@@ -37,11 +37,21 @@ namespace GuessAnimal.BusinessLayer
                                     group element by element.AnimalId
                                     into groups
                                     select groups.OrderBy(p => p.FactId).FirstOrDefault();
-                return animalDetails.Include(a => a.Animal).ToList().Where(ad => ad.AnimalId == nextAnimalId).OrderBy(a => a.FactId).FirstOrDefault();
-                //from element in db.AnimalDetails.Include(a => a.Animal)
-                //                select groups.OrderBy(p => p.FactId).FirstOrDefault();
-            
-            
+                var items =  animalDetails.Include(a => a.Animal).ToList();
+            int index = items.FindIndex(it => it.AnimalId == animalId);
+
+            if (items.Count > index + 1)
+            {
+                return items.ElementAt(index + 1);
+            }
+            else
+            {
+
+            }
+            //from element in db.AnimalDetails.Include(a => a.Animal)
+            //                select groups.OrderBy(p => p.FactId).FirstOrDefault();
+
+
             return null;
             
         }
@@ -55,7 +65,7 @@ namespace GuessAnimal.BusinessLayer
         {
             //if (currentFact != null)
            // {
-                int nextAnimalId = animalId + 1;
+             //   int nextAnimalId = animalId + 1;
 
                 var items = db.AnimalDetails.Include(a => a.Animal).Where(ad => ad.AnimalId == animalId).OrderBy(a => a.FactId).ToList();
                 int index = items.FindIndex(it => it.FactId == factId);
