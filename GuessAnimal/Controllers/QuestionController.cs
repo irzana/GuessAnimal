@@ -32,6 +32,7 @@ namespace GuessAnimal.Api.Controllers
      //   [Route("Get/{animalId}/{factId}/{selectedAnswer}")]
         public IHttpActionResult Get([FromUri]int  animalId, int factId, string selectedAnswer)
         {
+            bool animalFound = false;
             if (animalId == 0 && factId == 0)
             {
                 var animalDetails = from element in db.AnimalDetails.Include(a => a.Animal)
@@ -46,6 +47,7 @@ namespace GuessAnimal.Api.Controllers
             if (!string.IsNullOrEmpty(selectedAnswer) && selectedAnswer.ToLower().Equals("yes"))
             {
                 temp = new BusinessLayer.BLAnimalDetail().GetNextFactForAnimal(animalId,factId);
+                animalFound = true;
                 //ViewData["AnimalFound"] = true;
             }
             else if (!string.IsNullOrEmpty(selectedAnswer) && selectedAnswer.ToLower().Equals("no"))
@@ -55,7 +57,7 @@ namespace GuessAnimal.Api.Controllers
             }
             //  ModelState.Clear();
 
-            if (temp == null)
+            if (temp == null && animalFound.Equals(true))
             {
                 //  ViewData["EndGuess"] = true;
 

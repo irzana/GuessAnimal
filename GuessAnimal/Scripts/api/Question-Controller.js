@@ -24,24 +24,25 @@
 
             $http.get("/api/question/get",config).then(function (data, status, headers, config) {
                 // $scope.options = data.options;
-                if (data != null)
-                {
-                    if (data.data.AnimalName != undefined && data.data.AnimalName != '')
-                    {
-                        $scope.AnimalName = data.data.AnimalName;
+                if (data.data != null) {
+                    if (data.data.AnimalName != undefined && data.data.AnimalName != '') {
+                        $scope.AnimalName = "The Animal is "+ data.data.AnimalName;
                         $scope.answered = true;
 
                     }
                     else {
-                        $scope.title = data.data.Facts;
+                        $scope.title ="Does the animal " + data.data.Facts;
                         $scope.AnimalId = data.data.AnimalId;
                         $scope.FactId = data.data.FactId;
-                       // $scope.answered = false;
-                      //  $scope.working = false;
+                        // $scope.answered = false;
+                        //  $scope.working = false;
                     }
                 }
-               
-                
+                else {
+
+                    $scope.AnimalName = "Animal not found";
+                    $scope.answered = true;
+                }
             }).error(function (data, status, headers, config) {
                 $scope.title = "Oops... something went wrong";
                 $scope.working = false;

@@ -16,11 +16,11 @@
             <div class="row">
                 <div class="flip-container text-center col-md-12" ng-controller="QuizCtrl" ng-init="nextQuestion()">
                     <div class="back" ng-class="{flip:answered}">
-                        <p class="lead">The Animal is, {{AnimalName}}</p>
+                        <p class="lead">{{AnimalName}}</p>
 
                     </div>
                     <div class="front" ng-class="{flip:answered}">
-                        <p class="lead">Does the animal {{title}}</p>
+                        <p class="lead">{{title}}</p>
                         <div class="row text-center">
                             @*<button class="btn btn-info btn-lg option" ng-repeat="option in options" ng-click="sendAnswer(option)" ng-disabled="working">{{option.title}}</button>*@
                             <input type="radio" ng-model="selectedAnswer" value="yes">Yes
