@@ -1,0 +1,46 @@
+﻿
+@{
+    ViewBag.Title = "Question";
+}
+
+<h2>Guess the Animal</h2>
+
+
+@{
+    ViewBag.Title = "Play";
+}
+
+<div id="bodyContainer" ng-app="QuizApp">
+    <section id="content">
+        <div class="container">
+            <div class="row">
+                <div class="flip-container text-center col-md-12" ng-controller="QuizCtrl" ng-init="nextQuestion()">
+                    <div class="back" >
+                      @*  <p class="lead">{{answer()}}</p>*@
+                       
+                    </div>
+                    <div class="front" ng-class="{flip: answered}">
+                        <p class="lead">Does the animal {{title}}</p>
+                        <div class="row text-center">
+                            @*<button class="btn btn-info btn-lg option" ng-repeat="option in options" ng-click="sendAnswer(option)" ng-disabled="working">{{option.title}}</button>*@
+                            <input type="radio" ng-model="selectedAnswer" value="yes">Yes
+                            <input type="radio" ng-model="selectedAnswer" value="no">No
+                            <br />
+                            <br />
+                            <p>
+                                <button class="btn btn-info btn-lg next option" ng-click="nextQuestion()">Next Question</button>
+                            </p>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+@section scripts {
+    @Scripts.Render("~/Scripts/angular.js")
+    @Scripts.Render("~/Scripts/api/Question-Controller.js")
+}
+
