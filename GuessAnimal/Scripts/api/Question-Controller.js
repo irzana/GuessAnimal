@@ -6,6 +6,7 @@
         $scope.working = false;
         $scope.AnimalId = 0;
         $scope.FactId = 0;
+        $scope.AnimalName = '';
 
         $scope.answer = function () {
             return $scope.answerVal ? 'yes' : 'no';
@@ -23,11 +24,23 @@
 
             $http.get("/api/question/get",config).then(function (data, status, headers, config) {
                 // $scope.options = data.options;
-                $scope.title = data.data.Facts;
-                $scope.AnimalId = data.data.AnimalId;
-                $scope.FactId = data.data.FactId;
-                $scope.answered = false;
-                $scope.working = false;
+                if (data != null)
+                {
+                    if (data.data.AnimalName != undefined && data.data.AnimalName != '')
+                    {
+                        $scope.AnimalName = data.data.AnimalName;
+                        $scope.answered = true;
+
+                    }
+                    else {
+                        $scope.title = data.data.Facts;
+                        $scope.AnimalId = data.data.AnimalId;
+                        $scope.FactId = data.data.FactId;
+                       // $scope.answered = false;
+                      //  $scope.working = false;
+                    }
+                }
+               
                 
             }).error(function (data, status, headers, config) {
                 $scope.title = "Oops... something went wrong";

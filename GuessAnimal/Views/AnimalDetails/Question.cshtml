@@ -7,7 +7,7 @@
 
 
 @{
-    ViewBag.Title = "Play";
+    ViewBag.Title = "GuessApp";
 }
 
 <div id="bodyContainer" ng-app="QuizApp">
@@ -15,11 +15,11 @@
         <div class="container">
             <div class="row">
                 <div class="flip-container text-center col-md-12" ng-controller="QuizCtrl" ng-init="nextQuestion()">
-                    <div class="back" >
-                      @*  <p class="lead">{{answer()}}</p>*@
-                       
+                    <div class="back" ng-class="{flip:answered}">
+                        <p class="lead">The Animal is, {{AnimalName}}</p>
+
                     </div>
-                    <div class="front" ng-class="{flip: answered}">
+                    <div class="front" ng-class="{flip:answered}">
                         <p class="lead">Does the animal {{title}}</p>
                         <div class="row text-center">
                             @*<button class="btn btn-info btn-lg option" ng-repeat="option in options" ng-click="sendAnswer(option)" ng-disabled="working">{{option.title}}</button>*@
@@ -33,6 +33,8 @@
 
                         </div>
                     </div>
+
+                    
                 </div>
             </div>
         </div>

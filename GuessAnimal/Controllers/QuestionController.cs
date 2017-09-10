@@ -62,7 +62,8 @@ namespace GuessAnimal.Api.Controllers
                 var animal = db.Animals.Find(animalId);
                 if (animal != null)
                 {
-                    //    ViewData["AnimalName"] = animal.Name;
+                    temp = new AnimalDetail();
+                    temp.AnimalName = animal.Name;
                 }
             }
 

@@ -16,6 +16,7 @@ namespace GuessAnimal.Models
     public partial class AnimalDetail
     {       
         public string SelectedAnswer { get; set; }
+        public string AnimalName { get; set; }
 
        // public virtual List<AnswerOption> Options { get; set; }
 
